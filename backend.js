@@ -159,7 +159,7 @@ res.redirect("/");
 // console.log(req.file);
 // res.redirect("/");
 // })
-  app.listen(3000,function(req,res){
-    console.log("server started on 3000");
+app.listen(process.env.PORT||3000,function(){
+  console.log("server started ");
 })
 }
