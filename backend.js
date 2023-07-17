@@ -20,6 +20,7 @@ filename:function(req,file,cb){
   return cb(null,`${Date.now()}-${file.originalname}`);
 }
 })
+
 // const upload = multer({ storage })
 const allowedFileTypes = ["image/jpeg", "image/png", "application/pdf"];
 const upload = multer({
@@ -101,7 +102,11 @@ menu : { type: String }
     const pi=req.body.pin;
     const phn=req.body.phn;
     const em=req.body.email;
-    const menuFile = req.file;
+    let menuFileName = ""; 
+    if (req.file) {
+      // A file is submitted, use its filename
+      menuFileName = req.file.filename;
+    }
 
     const clo=[];
     if(req.body.mon){
@@ -135,7 +140,7 @@ menu : { type: String }
       phno:phn,
       email:em,
       closingday:clo,
-     menu: menuFile.filename
+     menu: menuFileName,
       // source:fil,
     })
     
